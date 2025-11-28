@@ -1,0 +1,377 @@
+/* Tailwind CSS directives - these are valid and will be processed by PostCSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 text-gray-900 antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 
+           text-white font-semibold py-2.5 px-6 rounded-xl 
+           transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+           relative overflow-hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+  }
+  
+  .btn-primary:hover::before {
+    @apply opacity-10;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-800 font-semibold py-2.5 px-6 rounded-xl 
+           transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 
+           active:scale-95 border-2 border-gray-200 hover:border-gray-300;
+  }
+  
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
+           text-white font-semibold py-2.5 px-6 rounded-xl 
+           transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-xl 
+           focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 
+           transition-all duration-300 hover:border-gray-300 bg-white
+           placeholder:text-gray-400;
+  }
+  
+  .card {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 
+           hover:shadow-2xl transition-all duration-300 border border-gray-100/50
+           hover:border-primary-200/50;
+  }
+  
+  .section-title {
+    @apply text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent 
+           mb-4 pb-3 border-b-2 border-primary-200;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-20 h-0.5 bg-gradient-to-r from-primary-500 to-transparent;
+  }
+  
+  /* Enhanced scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-primary-400 to-primary-500 rounded-full hover:from-primary-500 hover:to-primary-600;
+  }
+  
+  /* Resume preview styles */
+  .resume-preview-template {
+    @apply min-h-[800px] print:min-h-0 bg-white;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Ensure contact info fits within margins */
+  .resume-preview-template * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Print-specific styles for resume */
+  @media print {
+    .resume-preview-template {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+    
+    .resume-preview-template > * {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  
+  /* Modern Animation classes */
+  .fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .scale-in {
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-500 via-primary-600 to-purple-700;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl;
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  /* Modern card hover */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+  }
+  
+  /* Rich Text Editor Styles */
+  [contenteditable][data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    pointer-events: none;
+  }
+
+  [contenteditable] {
+    outline: none;
+  }
+
+  [contenteditable]:focus {
+    outline: none;
+  }
+
+  [contenteditable] h1 {
+    @apply text-2xl font-bold mb-2 mt-2;
+  }
+
+  [contenteditable] h2 {
+    @apply text-xl font-bold mb-2 mt-2;
+  }
+
+  [contenteditable] h3 {
+    @apply text-lg font-semibold mb-1 mt-1;
+  }
+
+  [contenteditable] ul, [contenteditable] ol {
+    @apply ml-6 mb-2 mt-2;
+  }
+
+  [contenteditable] ul {
+    @apply list-disc;
+  }
+
+  [contenteditable] ol {
+    @apply list-decimal;
+  }
+
+  [contenteditable] li {
+    @apply mb-1;
+  }
+
+  [contenteditable] p {
+    @apply mb-2;
+  }
+
+  [contenteditable] p:last-child {
+    @apply mb-0;
+  }
+
+  [contenteditable] strong {
+    @apply font-bold;
+  }
+
+  [contenteditable] em {
+    @apply italic;
+  }
+
+  [contenteditable] u {
+    @apply underline;
+  }
+
+  /* Prose styles for rendered HTML */
+  .prose {
+    @apply text-gray-700;
+  }
+
+  .prose h1 {
+    @apply text-2xl font-bold mb-2 mt-2;
+  }
+
+  .prose h2 {
+    @apply text-xl font-bold mb-2 mt-2;
+  }
+
+  .prose h3 {
+    @apply text-lg font-semibold mb-1 mt-1;
+  }
+
+  .prose ul, .prose ol {
+    @apply ml-6 mb-2 mt-2;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply mb-1;
+  }
+
+  .prose p {
+    @apply mb-2;
+  }
+
+  .prose p:last-child {
+    @apply mb-0;
+  }
+
+  .prose strong {
+    @apply font-bold;
+  }
+
+  .prose em {
+    @apply italic;
+  }
+
+  .prose u {
+    @apply underline;
+  }
+
+  /* Text wrapping for long URLs and links */
+  .break-all {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  .break-words {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  /* Print styles - Enhanced for better PDF output */
+  @media print {
+    @page {
+      margin: 0.5in;
+      size: A4;
+    }
+    
+    body {
+      @apply bg-white;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .no-print {
+      @apply hidden;
+      display: none !important;
+    }
+    
+    .resume-preview-template {
+      @apply shadow-none border-none;
+      page-break-inside: avoid;
+      max-width: 100% !important;
+      width: 100% !important;
+      overflow: visible !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    .card {
+      @apply shadow-none border-none;
+      page-break-inside: avoid;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    /* Ensure sections don't break across pages */
+    section, .mb-4, .mb-6, .mb-8 {
+      page-break-inside: avoid;
+    }
+    
+    /* Better print colors */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* Ensure text wraps properly in print */
+    .break-all, .break-words {
+      word-break: break-all !important;
+      overflow-wrap: anywhere !important;
+      max-width: 100% !important;
+    }
+
+    /* Remove background gradients in print if needed */
+    .bg-gradient-to-br,
+    .bg-gradient-to-r,
+    .bg-gradient-to-bottom {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+}
