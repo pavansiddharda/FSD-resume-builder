@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -5,6 +6,7 @@ import { useReactToPrint } from 'react-to-print'
 import { resumeService } from '../services/api'
 import ResumePreview from '../components/ResumePreview'
 import { FaEdit, FaDownload, FaSpinner, FaArrowLeft, FaTrash } from 'react-icons/fa'
+import html2pdf from 'html2pdf.js'
 
 const ViewResume = () => {
   const { id } = useParams()
@@ -18,12 +20,13 @@ const ViewResume = () => {
   const handlePrint = useReactToPrint({
     content: () => {
       if (!printRef.current) {
-        toast.error('Resume content not ready. Please refresh and try again.')
-        return null
+        toast.error('Resume content not loaded yet. Please try again.');
+        return null;
       }
-      return printRef.current
+      return printRef.current;
     },
     documentTitle: `${resumeData?.personalInfo?.fullName || 'Resume'}_Resume`,
+    removeAfterPrint: true,
     pageStyle: `
       @page {
         size: A4;
@@ -52,38 +55,67 @@ const ViewResume = () => {
       }
     `,
     onBeforeGetContent: () => {
-      setPrinting(true)
-      toast.info('Preparing PDF...')
-      return Promise.resolve()
+      setPrinting(true);
+      toast.info('Preparing PDF...');
+      return new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
     },
     onAfterPrint: () => {
-      setPrinting(false)
-      toast.success('PDF ready! Use your browser\'s print dialog to save as PDF.')
+      setPrinting(false);
+      toast.success('PDF ready! Please use your browser\'s print dialog to save as PDF.');
     },
     onPrintError: (error) => {
-      setPrinting(false)
-      console.error('Print error:', error)
-      toast.error('Failed to generate PDF. Please try using your browser\'s print function (Ctrl+P).')
+      setPrinting(false);
+      console.error('Print error:', error);
+      toast.error('Failed to generate PDF. Please try using your browser\'s print function (Ctrl+P).');
     }
-  })
+  });
 
   const handleDownloadClick = async (e) => {
-    e.preventDefault()
-    if (!resumeData) {
-      toast.error('Resume data not loaded. Please wait a moment.')
-      return
+    e.preventDefault();
+    if (!resumeData || !printRef.current) {
+      toast.error('Resume content not ready. Please wait a moment.');
+      return;
     }
-    if (!printRef.current) {
-      toast.error('Resume content not ready. Please wait a moment.')
-      return
-    }
+
     try {
-      await handlePrint()
+      toast.info('Preparing PDF download...');
+      
+      // Get the resume element
+      const element = printRef.current;
+      
+      // Options for PDF generation
+      const opt = {
+        margin: [0.5, 0.5, 0.5, 0.5],
+        filename: `${resumeData?.personalInfo?.fullName?.replace(/\s+/g, '_') || 'Resume'}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          scrollY: 0
+        },
+        jsPDF: { 
+          unit: 'in', 
+          format: 'a4', 
+          orientation: 'portrait' 
+        },
+        pagebreak: { 
+          mode: ['avoid-all', 'css', 'legacy'] 
+        }
+      };
+
+      // Generate and download PDF
+      await html2pdf().set(opt).from(element).save();
+      
+      toast.success('PDF downloaded successfully!');
+      
     } catch (error) {
-      console.error('Download error:', error)
-      toast.error('Failed to download PDF. Please try again or use browser print (Ctrl+P).')
+      console.error('Download error:', error);
+      toast.error('Failed to generate PDF. Please try again.');
     }
-  }
+  };
 
   useEffect(() => {
     const fetchResume = async () => {

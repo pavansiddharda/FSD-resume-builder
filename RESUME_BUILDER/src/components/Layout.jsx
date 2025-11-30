@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
           <div className="flex justify-between h-16">
             <div className="flex">
               <Link to="/" className="flex items-center space-x-2 px-4 py-2 text-primary-600 font-bold text-xl">
+                <img src="/react.svg" className="h-8 w-8" alt="React Logo" />
                 <FaFileAlt />
                 <span>Resume Builder</span>
               </Link>

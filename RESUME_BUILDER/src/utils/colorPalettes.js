@@ -1,5 +1,6 @@
 // Predefined Color Palettes
 export const colorPalettes = [
+  // --- ORIGINAL PALETTES ---
   {
     id: 'blue-professional',
     name: 'Blue Professional',
@@ -149,6 +150,128 @@ export const colorPalettes = [
     text: '#1f2937',
     background: '#ffffff',
     category: 'Royal'
+  },
+
+  // --- NEW UNIQUE PALETTES ---
+  {
+    id: 'sunset-glow',
+    name: 'Sunset Glow',
+    primary: '#fb923c',
+    secondary: '#ea580c',
+    accent: '#fdba74',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Warm'
+  },
+  {
+    id: 'mint-calm',
+    name: 'Mint Calm',
+    primary: '#34d399',
+    secondary: '#059669',
+    accent: '#6ee7b7',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Fresh'
+  },
+  {
+    id: 'slate-dark',
+    name: 'Slate Dark',
+    primary: '#1e293b',
+    secondary: '#334155',
+    accent: '#475569',
+    text: '#f8fafc',
+    background: '#0f172a',
+    category: 'Dark'
+  },
+  {
+    id: 'ocean-deep',
+    name: 'Ocean Deep',
+    primary: '#0ea5e9',
+    secondary: '#0369a1',
+    accent: '#38bdf8',
+    text: '#1e293b',
+    background: '#f0f9ff',
+    category: 'Cool'
+  },
+  {
+    id: 'pastel-sky',
+    name: 'Pastel Sky',
+    primary: '#93c5fd',
+    secondary: '#60a5fa',
+    accent: '#bfdbfe',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Pastel'
+  },
+  {
+    id: 'sunrise-bright',
+    name: 'Sunrise Bright',
+    primary: '#f97316',
+    secondary: '#ea580c',
+    accent: '#fdba74',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Bright'
+  },
+  {
+    id: 'neon-vibe',
+    name: 'Neon Vibe',
+    primary: '#22d3ee',
+    secondary: '#06b6d4',
+    accent: '#0ea5e9',
+    text: '#0f172a',
+    background: '#ffffff',
+    category: 'Neon'
+  },
+  {
+    id: 'forest-earth',
+    name: 'Forest Earth',
+    primary: '#065f46',
+    secondary: '#047857',
+    accent: '#10b981',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Natural'
+  },
+  {
+    id: 'rose-charm',
+    name: 'Rose Charm',
+    primary: '#f43f5e',
+    secondary: '#e11d48',
+    accent: '#fb7185',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Soft'
+  },
+  {
+    id: 'gold-luxury',
+    name: 'Gold Luxury',
+    primary: '#fbbf24',
+    secondary: '#d97706',
+    accent: '#fcd34d',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Elegant'
+  },
+  {
+    id: 'midnight-blue',
+    name: 'Midnight Blue',
+    primary: '#1e3a8a',
+    secondary: '#1e40af',
+    accent: '#3b82f6',
+    text: '#e2e8f0',
+    background: '#0f172a',
+    category: 'Dark'
+  },
+  {
+    id: 'plum-delight',
+    name: 'Plum Delight',
+    primary: '#7c3aed',
+    secondary: '#6d28d9',
+    accent: '#a78bfa',
+    text: '#1f2937',
+    background: '#ffffff',
+    category: 'Creative'
   }
 ];
 
@@ -163,4 +286,3 @@ export const getPalettesByCategory = (category) => {
 export const getAllPaletteCategories = () => {
   return [...new Set(colorPalettes.map(p => p.category))];
 };
-
