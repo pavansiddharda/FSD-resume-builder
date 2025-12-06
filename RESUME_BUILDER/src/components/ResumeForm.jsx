@@ -105,8 +105,8 @@ const ResumeForm = ({ initialData, onSubmit, loading, submitButtonText, onDataCh
       return
     }
     const newData = {
-      ...resumeData,
-      experience: [...(resumeData.experience || []), { ...currentExperience }]
+      ...resumeData,//copies every thing into new data ... is called spread operator
+      experience: [...(resumeData.experience || []), { ...currentExperience }]//adding new experience to the existing experience
     }
     updateResumeData(newData)
     setCurrentExperience({

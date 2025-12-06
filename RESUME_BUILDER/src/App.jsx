@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
   const user = authService.getCurrentUser()
   return user ? children : <Navigate to="/login" replace />
 }
-
+/*module react router dym is used for dynamic routing as react cant give dynamic routing*/
 function App() {
   return (
     <Routes>

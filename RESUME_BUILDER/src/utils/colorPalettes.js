@@ -152,7 +152,7 @@ export const colorPalettes = [
     category: 'Royal'
   },
 
-  // --- NEW UNIQUE PALETTES ---
+  // --- NEW UNIQUE PALETTES added---
   {
     id: 'sunset-glow',
     name: 'Sunset Glow',
